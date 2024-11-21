@@ -5,7 +5,7 @@ export const accountTable = pgTable("account", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull().unique(),
-  password: varchar({ length: 255 }).notNull(),
+  account_type: varchar({ length: 50 }).notNull(),
   role: varchar({ length: 255 }).notNull(),
   created_at: timestamp()
     .notNull()
