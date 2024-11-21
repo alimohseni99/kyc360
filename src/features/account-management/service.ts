@@ -6,8 +6,7 @@ export function createService(db: Db) {
   return {
     async getAllAccounts() {
       const accounts = await repository.getAllAccounts();
-
-      console.log(accounts);
+      return accounts;
     },
   };
 }

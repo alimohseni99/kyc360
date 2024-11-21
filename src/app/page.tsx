@@ -1,3 +1,9 @@
+import { Accounts } from "@/features/account-management/components/page";
+
 export default function Home() {
-  return <h1>Hello World!</h1>;
+  return (
+    <div>
+      <Accounts />
+    </div>
+  );
 }
