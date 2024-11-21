@@ -18,3 +18,11 @@ export async function createAccount(formData: FormData) {
   };
   await chatService.createAccount(account);
 }
+
+export async function deleteAccount(formData: FormData) {
+  const accountId = formData.get("id") as string;
+  if (!accountId) {
+    return;
+  }
+  await chatService.deleteAccount(accountId);
+}

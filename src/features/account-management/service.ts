@@ -12,5 +12,8 @@ export function createService(db: Db) {
     async createAccount(account: Accounts) {
       return await repository.createAccount(account);
     },
+    async deleteAccount(id: string) {
+      return await repository.deleteAccount(id);
+    },
   };
 }
