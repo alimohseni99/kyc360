@@ -43,7 +43,7 @@ export function Login() {
           <FormControl>
             <Input
               {...form.register("email")}
-              placeholder="Enter Election title"
+              placeholder="Enter your email"
               className="mt-1 block w-full rounded-md border shadow-sm"
             />
           </FormControl>

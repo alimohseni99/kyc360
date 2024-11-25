@@ -1,21 +1,25 @@
 import { sql } from "drizzle-orm";
-import { pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { pgTable, uuid, varchar } from "drizzle-orm/pg-core";
 
-export const accountTable = pgTable("account", {
+export const verifiedAccountTable = pgTable("verified_account", {
   id: uuid()
     .primaryKey()
     .default(sql`gen_random_uuid()`),
-  name: varchar({ length: 255 }).notNull(),
-  email: varchar({ length: 255 }).notNull().unique(),
-  created_at: timestamp()
+  status_id: uuid()
     .notNull()
-    .default(sql`now()`),
+    .references(() => accountStatusTable.id),
+  email: varchar({ length: 255 }).notNull(),
+  name: varchar({ length: 255 }).notNull(),
+  address: varchar({ length: 500 }).notNull(),
+  id_document_url: varchar({ length: 500 }).notNull(),
+  verified_by: varchar({ length: 255 }).notNull().default("admin"),
 });
 
-export const enterpriseAccountTable = pgTable("enterprise_account", {
+export const accountStatusTable = pgTable("account_status", {
   id: uuid()
     .primaryKey()
     .default(sql`gen_random_uuid()`),
   email: varchar({ length: 255 }).notNull().unique(),
-  status: varchar({ length: 255 }).notNull().default("unverified"), // pending, approved, unverified
+  name: varchar({ length: 255 }).notNull(),
+  status: varchar({ length: 50 }).notNull().default("unverified"),
 });
