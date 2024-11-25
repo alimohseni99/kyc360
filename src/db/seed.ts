@@ -1,13 +1,9 @@
-import { drizzle } from "drizzle-orm/node-postgres";
 import { usersTable } from "../features/login/schema/schema";
 import { db } from "./index";
-type Props = {
-  email: string;
-  password: string;
-};
+import { bank_ussers } from "@/features/login/type";
 
 const main = async () => {
-  const users: Props = {
+  const users: bank_ussers = {
     email: "admin@example.com",
     password: "admin",
   };
