@@ -1,4 +1,9 @@
+import { CreateAccount } from "./create-account";
+
 export default function Dashboard() {
- 
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <CreateAccount />
+    </div>
+  );
 }

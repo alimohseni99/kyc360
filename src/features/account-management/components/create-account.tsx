@@ -1,30 +1,71 @@
 "use client";
 
+import { useForm } from "react-hook-form";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { createAccount } from "../action";
 
-export default function CreateAccount() {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    createAccount(formData);
+export function CreateAccount() {
+  const representativeSchema = z.object({
+    email: z.string({ message: "Invalid email address" }),
+    name: z.string({ message: "Name is required" }),
+  });
+  const form = useForm<z.infer<typeof representativeSchema>>({
+    resolver: zodResolver(representativeSchema),
+  });
+
+  const onSubmit = (data: z.infer<typeof representativeSchema>) => {
+    createAccount(data.email, data.name);
+    form.reset();
   };
 
   return (
-    <div>
-      <section>
-        <form onSubmit={onSubmit} name="account">
-          <label>Name</label>
-          <input type="text" name="name" />
-          <label>Email</label>
-          <input type="email" name="email" />
-          <label>Account Type</label>
-          <select name="accountType" id="">
-            <option value="Individual">Individual</option>
-            <option value="Company">Company</option>
-          </select>
-          <button type="submit">Create Account</button>
-        </form>
-      </section>
-    </div>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-[350px] border border-gray-200 p-5 rounded-md shadow-md "
+      >
+        <h2 className="text-xl font-semibold text-center">Create an account</h2>
+
+        <FormItem>
+          <FormLabel className="text-sm font-medium">Email:</FormLabel>
+          <FormControl>
+            <Input
+              {...form.register("email")}
+              placeholder="Enter your email"
+              className="mt-1 block w-full rounded-md border shadow-sm"
+            />
+          </FormControl>
+          <FormMessage>{form.formState.errors.email?.message}</FormMessage>
+        </FormItem>
+
+        <FormItem>
+          <FormLabel className="text-sm font-medium">Name:</FormLabel>
+          <FormControl>
+            <Input
+              {...form.register("name")}
+              placeholder="Enter customers name"
+              type="text"
+              className="mt-1 block w-full rounded-md border shadow-sm"
+            />
+          </FormControl>
+          <FormMessage>{form.formState.errors.name?.message}</FormMessage>
+        </FormItem>
+
+        <div className="flex justify-end">
+          <Button className="mt-5"> Create</Button>
+        </div>
+      </form>
+    </Form>
   );
 }
