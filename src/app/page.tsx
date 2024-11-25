@@ -1,9 +1,5 @@
-import { Login } from "@/features";
+import LoginPage from "./(login)/login";
 
 export default function Home() {
-  return (
-    <div className="flex justify-center ">
-      <Login />
-    </div>
-  );
+  return <LoginPage />;
 }

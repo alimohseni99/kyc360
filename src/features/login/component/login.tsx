@@ -10,10 +10,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
-import { bankUsersLogin } from "../action";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { bankUsersLogin } from "../action";
 
 export function Login() {
   const representativeSchema = z.object({
@@ -34,7 +34,7 @@ export function Login() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[350px] border border-gray-200 p-5 rounded-md shadow-md mt-28"
+        className="w-[350px] border border-gray-200 p-5 rounded-md shadow-md "
       >
         <h2 className="text-xl font-semibold text-center">Login</h2>
 
