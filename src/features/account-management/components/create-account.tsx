@@ -62,9 +62,7 @@ export function CreateAccount() {
           <FormMessage>{form.formState.errors.name?.message}</FormMessage>
         </FormItem>
 
-        <div className="flex justify-end">
-          <Button className="mt-5"> Create</Button>
-        </div>
+        <Button className="mt-5 w-full"> Create</Button>
       </form>
     </Form>
   );

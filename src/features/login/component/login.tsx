@@ -63,9 +63,7 @@ export function Login() {
           <FormMessage>{form.formState.errors.password?.message}</FormMessage>
         </FormItem>
 
-        <div className="flex justify-end">
-          <Button className="mt-5"> Login</Button>
-        </div>
+        <Button className="mt-5 w-full"> Login</Button>
       </form>
     </Form>
   );
