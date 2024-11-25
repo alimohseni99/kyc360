@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "push": "npx drizzle-kit push",
-    "studio": "npx drizzle-kit studio"
+    "studio": "npx drizzle-kit studio",
+    "drizzle:seed": "tsx  ./src/db/seed.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -24,6 +25,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "drizzle-kit": "^0.28.1",
+    "esbuild-register": "^3.6.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
