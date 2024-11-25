@@ -3,25 +3,38 @@
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { bankUsersLogin } from "../action";
+import { z } from "zod";
 
 export function Login() {
-  const form = useForm();
-  const email = form.getValues("email");
-  const password = form.getValues("password");
+  const representativeSchema = z.object({
+    email: z.string({ message: "Invalid email address" }),
+    password: z
+      .string()
+      .min(4, { message: "Password must be at least 4 characters" }),
+  });
+  const form = useForm<z.infer<typeof representativeSchema>>({
+    resolver: zodResolver(representativeSchema),
+  });
 
-  console.log({ email, password });
-  const onSubmit = () => {
-    bankUsersLogin(email, password);
+  const onSubmit = (data: z.infer<typeof representativeSchema>) => {
+    bankUsersLogin(data.email, data.password);
   };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[350px] border border-gray-200 p-5 rounded-md"
+        className="w-[350px] border border-gray-200 p-5 rounded-md shadow-md mt-28"
       >
         <h2 className="text-xl font-semibold text-center">Login</h2>
 
@@ -34,6 +47,7 @@ export function Login() {
               className="mt-1 block w-full rounded-md border shadow-sm"
             />
           </FormControl>
+          <FormMessage>{form.formState.errors.email?.message}</FormMessage>
         </FormItem>
 
         <FormItem>
@@ -46,6 +60,7 @@ export function Login() {
               className="mt-1 block w-full rounded-md border shadow-sm"
             />
           </FormControl>
+          <FormMessage>{form.formState.errors.password?.message}</FormMessage>
         </FormItem>
 
         <div className="flex justify-end">
