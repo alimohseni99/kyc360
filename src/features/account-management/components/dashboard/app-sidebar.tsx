@@ -9,10 +9,6 @@ import {
 } from "lucide-react";
 import * as React from "react";
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -20,6 +16,10 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { NavMain } from "@/features/account-management/components/dashboard/nav-main";
+import { NavProjects } from "@/features/account-management/components/dashboard/nav-projects";
+import { NavUser } from "@/features/account-management/components/dashboard/nav-user";
+import { TeamSwitcher } from "@/features/account-management/components/dashboard/team-switcher";
 
 const data = {
   user: {
@@ -86,11 +86,11 @@ const data = {
       icon: FileText,
       items: [
         {
-          title: "Create Account",
+          title: "View All Accounts",
           url: "#",
         },
         {
-          title: "Delete Account",
+          title: "Create New Account",
           url: "#",
         },
       ],

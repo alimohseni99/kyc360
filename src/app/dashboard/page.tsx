@@ -1,4 +1,4 @@
-import Dashboard from "@/features/account-management/components/dashboard";
+import Dashboard from "@/features/account-management/components/dashboard/dashboard";
 
 export default function DashboardPage() {
   return (
