@@ -23,8 +23,8 @@ import { TeamSwitcher } from "@/features/account-management/components/dashboard
 
 const data = {
   user: {
-    name: "Bank User",
-    email: "bankuser@test.com",
+    name: "Admin",
+    email: "admin@gamil.com",
     avatar: "",
   },
   teams: [
@@ -53,11 +53,7 @@ const data = {
       items: [
         {
           title: "Dashboard",
-          url: "#",
-        },
-        {
-          title: "Recent Activities",
-          url: "#",
+          url: "/dashboard",
         },
       ],
     },
@@ -91,7 +87,7 @@ const data = {
         },
         {
           title: "Create New Account",
-          url: "/create-account",
+          url: "/dashboard/create-account",
         },
       ],
     },
