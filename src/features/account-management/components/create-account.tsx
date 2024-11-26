@@ -26,18 +26,28 @@ export function CreateAccount() {
     resolver: zodResolver(representativeSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof representativeSchema>) => {
-    createAccount(data.email, data.name);
-    toast({
-      title: "Account Created Successfully",
-      description: (
-        <>
-          The account for <strong>{data.name}</strong> has been successfully
-          created. You may proceed with the next steps in the verification
-          process.
-        </>
-      ),
-    });
+  const onSubmit = async (data: z.infer<typeof representativeSchema>) => {
+    try {
+      await createAccount(data.email, data.name);
+      toast({
+        title: "Account Created Successfully",
+        description: (
+          <>
+            The account for <strong>{data.name}</strong> has been successfully
+            created. You may proceed with the next steps in the verification
+            process.
+          </>
+        ),
+      });
+    } catch (error) {
+      console.error("Error creating account:", error);
+      console.log(error);
+      toast({
+        title: "Account Creation Failed",
+        description:
+          "There was an error creating the account. Please try again.",
+      });
+    }
 
     form.reset();
   };

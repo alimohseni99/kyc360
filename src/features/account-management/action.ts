@@ -11,9 +11,16 @@ export async function createAccount(email: string, name: string) {
     name,
     email,
   };
+  try {
+    // Create the account in the database
+    await chatService.createAccount(account);
 
-  await chatService.createAccount(account);
-  sendMail(email, name);
+    // Send confirmation email
+    await sendMail(email, name);
+  } catch (error) {
+    console.error("Error during account creation:", error);
+    throw new Error("Error creating account. Please try again.");
+  }
 }
 
 export async function deleteAccount(formData: FormData) {
