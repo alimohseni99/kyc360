@@ -91,7 +91,7 @@ const data = {
         },
         {
           title: "Create New Account",
-          url: "#",
+          url: "/create-account",
         },
       ],
     },
