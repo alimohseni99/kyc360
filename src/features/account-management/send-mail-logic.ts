@@ -4,16 +4,20 @@ import "dotenv/config";
 if (!process.env.SENDGRID_API_KEY) {
   throw new Error("SENDGRID_API_KEY is not defined in environment variables.");
 }
+if (!process.env.SENDGRID_SENDER_EMAIL) {
+  throw new Error(
+    "SENDGRID_SENDER_EMAIL is not defined in environment variables."
+  );
+}
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export function sendMail(to: string, name: string) {
-
+export function sendWelcomeEmail(to: string, name: string) {
   // Replace the link with the actual link when the feature is ready
   const link = "insert-link-here-for-later";
-  console.log({ to, name });
+
   const msg = {
     to,
-    from: "ali.mohseni@appliedtechnology.se",
+    from: process.env.SENDGRID_SENDER_EMAIL as string,
     subject: "Welcome to KYC360!",
     html: `<!DOCTYPE html>
 <html lang="en">

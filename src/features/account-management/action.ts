@@ -1,7 +1,7 @@
 "use server";
 
 import { chatService } from "./instance";
-import { sendMail } from "./send-mail-logic";
+import { sendWelcomeEmail } from "./send-mail-logic";
 import { Accounts } from "./type";
 
 export async function createAccount(email: string, name: string) {
@@ -16,7 +16,7 @@ export async function createAccount(email: string, name: string) {
     await chatService.createAccount(account);
 
     // Send confirmation email
-    await sendMail(email, name);
+    await sendWelcomeEmail(email, name);
   } catch (error) {
     console.error("Error during account creation:", error);
     throw new Error("Error creating account. Please try again.");

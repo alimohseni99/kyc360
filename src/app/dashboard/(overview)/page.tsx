@@ -1,4 +1,4 @@
-import Dashboard from "@/features/account-management/components/dashboard/dashboard";
+import { Dashboard } from "@/features";
 
 export default function Page() {
   return <Dashboard />;

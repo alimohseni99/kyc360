@@ -13,7 +13,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-export default function Dashboard() {
+export function Dashboard() {
   return (
     <SidebarProvider>
       <SidebarInset>
