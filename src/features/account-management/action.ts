@@ -11,6 +11,7 @@ export async function createAccount(email: string, name: string) {
     name,
     email,
   };
+
   await chatService.createAccount(account);
   sendMail(email, name);
 }

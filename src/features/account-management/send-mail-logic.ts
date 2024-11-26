@@ -7,6 +7,8 @@ if (!process.env.SENDGRID_API_KEY) {
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export function sendMail(to: string, name: string) {
+
+  // Replace the link with the actual link when the feature is ready
   const link = "insert-link-here-for-later";
   console.log({ to, name });
   const msg = {

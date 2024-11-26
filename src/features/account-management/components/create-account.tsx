@@ -11,14 +11,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createAccount } from "../action";
 
 export function CreateAccount() {
+  const { toast } = useToast();
   const representativeSchema = z.object({
-    email: z.string({ message: "Invalid email address" }),
-    name: z.string({ message: "Name is required" }),
+    email: z.string().email({ message: "Invalid email address" }),
+    name: z.string().nonempty({ message: "Name is required" }),
   });
   const form = useForm<z.infer<typeof representativeSchema>>({
     resolver: zodResolver(representativeSchema),
@@ -26,6 +28,17 @@ export function CreateAccount() {
 
   const onSubmit = (data: z.infer<typeof representativeSchema>) => {
     createAccount(data.email, data.name);
+    toast({
+      title: "Account Created Successfully",
+      description: (
+        <>
+          The account for <strong>{data.name}</strong> has been successfully
+          created. You may proceed with the next steps in the verification
+          process.
+        </>
+      ),
+    });
+
     form.reset();
   };
 
