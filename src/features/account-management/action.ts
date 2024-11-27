@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { customerService } from "./instance";
 import { sendWelcomeEmail } from "./send-mail-logic";
 import { Accounts } from "./type";
@@ -22,11 +23,7 @@ export async function createAccount(email: string, name: string) {
     throw new Error("Error creating account. Please try again.");
   }
 }
-
-export async function deleteAccount(formData: FormData) {
-  const accountId = formData.get("id") as string;
-  if (!accountId) {
-    return;
-  }
-  await customerService.deleteAccount(accountId);
+export async function deleteAccount(id: string) {
+  await customerService.deleteAccount(id);
+  revalidatePath("/view-all-accounts");
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,9 +13,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { DeleteIcon, EditIcon, EyeIcon } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { DeleteIcon, EyeIcon } from "lucide-react";
+import { deleteAccount } from "../../action";
+import { EditCustomerCard } from "./edit-card";
 
-// Färger för statusindikatorn
 const statusColors: Record<string, string> = {
   pending: "bg-orange-500",
   verified: "bg-green-500",
@@ -21,12 +25,38 @@ const statusColors: Record<string, string> = {
 };
 
 type Props = {
+  id: string;
   name: string;
   email: string;
   status: "pending" | "verified" | "rejected";
 };
 
-export function GetAllCard({ name, email, status }: Props) {
+export function GetAllCard({ id, name, email, status }: Props) {
+  const { toast } = useToast();
+  const onClickDelete = () => {
+    deleteAccount(id);
+    try {
+      deleteAccount(id);
+      toast({
+        title: "Account Created Successfully",
+        description: (
+          <>
+            The account for <strong>{name}</strong> has been successfully
+            created. You may proceed with the next steps in the verification
+            process.
+          </>
+        ),
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Account Creation Failed",
+        description:
+          "There was an error creating the account. Please try again.",
+      });
+    }
+  };
+
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -46,15 +76,11 @@ export function GetAllCard({ name, email, status }: Props) {
                     >
                       <EyeIcon className="mr-2" /> View
                     </Button>
+                    <EditCustomerCard />
                     <Button
                       variant="ghost"
                       className="flex items-center justify-start gap-2 text-sm"
-                    >
-                      <EditIcon className="mr-2" /> Edit
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      className="flex items-center justify-start gap-2 text-sm"
+                      onClick={onClickDelete}
                     >
                       <DeleteIcon className="mr-2" /> Delete
                     </Button>
