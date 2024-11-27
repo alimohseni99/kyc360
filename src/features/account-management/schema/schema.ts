@@ -21,5 +21,5 @@ export const accountStatusTable = pgTable("account_status", {
     .default(sql`gen_random_uuid()`),
   email: varchar({ length: 255 }).notNull().unique(),
   name: varchar({ length: 255 }).notNull(),
-  status: varchar({ length: 50 }).notNull().default("unverified"),
+  status: varchar({ length: 50 }).notNull().default("pending"),
 });
