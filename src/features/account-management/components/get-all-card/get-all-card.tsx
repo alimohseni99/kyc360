@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Header from "../dashboard/header";
 
 // Färger för statusindikatorn
 const statusColors: Record<string, string> = {
@@ -25,21 +26,25 @@ type Props = {
 
 export function GetAllCard({ id, name, email, status }: Props) {
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle className="text-lg font-bold">Name: {name}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm text-gray-700">Email: {email}</p>
-      </CardContent>
-      <CardFooter className="flex justify-end">
-        <div className="flex items-center mt-4">
-          <span
-            className={`h-3 w-3 rounded-full ${statusColors[status]} mr-2`}
-          ></span>
-          <p className="text-sm font-medium capitalize bg-">Status: {status}</p>
-        </div>
-      </CardFooter>
-    </Card>
+    <>
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle className="text-lg font-bold">Name: {name}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-gray-700">Email: {email}</p>
+        </CardContent>
+        <CardFooter className="flex justify-end">
+          <div className="flex items-center mt-4">
+            <span
+              className={`h-3 w-3 rounded-full ${statusColors[status]} mr-2`}
+            ></span>
+            <p className="text-sm font-medium capitalize bg-">
+              Status: {status}
+            </p>
+          </div>
+        </CardFooter>
+      </Card>
+    </>
   );
 }

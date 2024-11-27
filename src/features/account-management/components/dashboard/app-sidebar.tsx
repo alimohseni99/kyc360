@@ -49,7 +49,6 @@ const data = {
       title: "Overview",
       url: "#",
       icon: FileCheck,
-      isActive: true,
       items: [
         {
           title: "Dashboard",

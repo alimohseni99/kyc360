@@ -2,7 +2,7 @@ import { CreateAccount } from "@/features/account-management/components/create-a
 
 export default function Page() {
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="">
       <CreateAccount />
     </div>
   );

@@ -15,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createAccount } from "../../action";
+import Header from "../dashboard/header";
 
 export function CreateAccount() {
   const { toast } = useToast();
@@ -51,40 +52,47 @@ export function CreateAccount() {
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[350px] border border-gray-200 p-5 rounded-md shadow-md "
-      >
-        <h2 className="text-xl font-semibold text-center">Create an account</h2>
+    <>
+      <Header place="Create Account" />
+      <div className="flex justify-center items-center min-h-screen">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-[350px] border border-gray-200 p-5 rounded-md shadow-md "
+          >
+            <h2 className="text-xl font-semibold text-center">
+              Create an account
+            </h2>
 
-        <FormItem>
-          <FormLabel className="text-sm font-medium">Email:</FormLabel>
-          <FormControl>
-            <Input
-              {...form.register("email")}
-              placeholder="Enter your email"
-              className="mt-1 block w-full rounded-md border shadow-sm"
-            />
-          </FormControl>
-          <FormMessage>{form.formState.errors.email?.message}</FormMessage>
-        </FormItem>
+            <FormItem>
+              <FormLabel className="text-sm font-medium">Email:</FormLabel>
+              <FormControl>
+                <Input
+                  {...form.register("email")}
+                  placeholder="Enter your email"
+                  className="mt-1 block w-full rounded-md border shadow-sm"
+                />
+              </FormControl>
+              <FormMessage>{form.formState.errors.email?.message}</FormMessage>
+            </FormItem>
 
-        <FormItem>
-          <FormLabel className="text-sm font-medium">Name:</FormLabel>
-          <FormControl>
-            <Input
-              {...form.register("name")}
-              placeholder="Enter customers name"
-              type="text"
-              className="mt-1 block w-full rounded-md border shadow-sm"
-            />
-          </FormControl>
-          <FormMessage>{form.formState.errors.name?.message}</FormMessage>
-        </FormItem>
+            <FormItem>
+              <FormLabel className="text-sm font-medium">Name:</FormLabel>
+              <FormControl>
+                <Input
+                  {...form.register("name")}
+                  placeholder="Enter customers name"
+                  type="text"
+                  className="mt-1 block w-full rounded-md border shadow-sm"
+                />
+              </FormControl>
+              <FormMessage>{form.formState.errors.name?.message}</FormMessage>
+            </FormItem>
 
-        <Button className="mt-5 w-full"> Create</Button>
-      </form>
-    </Form>
+            <Button className="mt-5 w-full"> Create</Button>
+          </form>
+        </Form>
+      </div>
+    </>
   );
 }
