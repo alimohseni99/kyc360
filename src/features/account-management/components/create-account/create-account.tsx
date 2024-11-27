@@ -43,8 +43,7 @@ export function CreateAccount() {
     } catch (error) {
       toast({
         title: "Account Creation Failed",
-        description:
-          "There was an error creating the account. Please try again.",
+        description: `There was an error creating the account. Please try again. ${error}`,
       });
     }
 
