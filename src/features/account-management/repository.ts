@@ -9,7 +9,11 @@ export function createRepository(db: Db) {
       return await db.select().from(accountStatusTable).execute();
     },
     async createAccount(account: Accounts) {
-      return await db.insert(accountStatusTable).values(account).execute();
+      return await db
+        .insert(accountStatusTable)
+        .values(account)
+        .returning({ customerId: accountStatusTable.id })
+        .execute();
     },
     async deleteAccount(id: string) {
       return await db

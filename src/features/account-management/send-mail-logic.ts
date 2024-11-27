@@ -11,9 +11,8 @@ if (!process.env.SENDGRID_SENDER_EMAIL) {
 }
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export function sendWelcomeEmail(to: string, name: string) {
-  // Replace the link with the actual link when the feature is ready
-  const link = "insert-link-here-for-later";
+export function sendWelcomeEmail(to: string, name: string, id: string) {
+  console.log(id);
 
   const msg = {
     to,
@@ -49,7 +48,7 @@ export function sendWelcomeEmail(to: string, name: string) {
       }
       .email-header {
         background-color: #e7e5e4;
-        color: #222222;
+        color: #222.2 84% 4.9%;
         text-align: center;
         padding: 20px;
         font-size: 20px;
@@ -68,18 +67,21 @@ export function sendWelcomeEmail(to: string, name: string) {
       .email-body p {
         margin: 10px 0;
       }
-      .email-button {
-        display: inline-block;
-        padding: 10px 18px;
-        background-color: #0a0a0a;
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        border-radius: 4px;
-        margin-top: 20px;
-        text-align: center;
-      }
+     .email-button {
+      display: inline-block;
+      padding: 10px 18px;
+      background-color: #0a0a0a;
+      color: #ffffff !important; 
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 4px;
+      margin-top: 20px;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+    }
+
       .email-footer {
         background-color: #fafafa;
         color: #6b7280;
@@ -102,9 +104,10 @@ export function sendWelcomeEmail(to: string, name: string) {
           </p>
           <p>Get started now by clicking the button below:</p>
           <p style="text-align: center">
-            <a href="${link}" class="email-button">
-              Start Verifying
+            <a href="http://localhost:3000/customer/${id}" class="email-button">
+                 Start Verifying
             </a>
+
           </p>
 
           <p>Best regards,<br />The KYC360 Team</p>

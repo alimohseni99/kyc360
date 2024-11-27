@@ -1,3 +1,4 @@
 export * from "./create-account";
-export * from "./dashboard";
 export * from "./customer-card";
+export * from "./customer-temp-page";
+export * from "./dashboard";

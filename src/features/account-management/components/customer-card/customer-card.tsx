@@ -42,8 +42,7 @@ export function GetAllCard({ id, name, email, status }: Props) {
         description: (
           <>
             The account for <strong>{name}</strong> has been successfully
-            created. You may proceed with the next steps in the verification
-            process.
+            deleted.
           </>
         ),
       });
@@ -61,12 +60,15 @@ export function GetAllCard({ id, name, email, status }: Props) {
         <CardTitle className="text-lg font-bold">
           <div className="flex items-center flex-wrap justify-between">
             <span>{name}</span>
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-1">
               <Popover>
                 <PopoverTrigger className="p-1 text-xl text-gray-500 hover:text-gray-700">
                   ...
                 </PopoverTrigger>
-                <PopoverContent className="w-40 p-3 shadow-lg rounded-lg bg-white">
+                <PopoverContent
+                  className="w-40 p-2 shadow-lg rounded-lg bg-white"
+                  align="end"
+                >
                   <div className="flex flex-col gap-2">
                     <Button
                       variant="ghost"
