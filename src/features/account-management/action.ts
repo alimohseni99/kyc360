@@ -1,6 +1,6 @@
 "use server";
 
-import { chatService } from "./instance";
+import { customerService } from "./instance";
 import { sendWelcomeEmail } from "./send-mail-logic";
 import { Accounts } from "./type";
 
@@ -13,7 +13,7 @@ export async function createAccount(email: string, name: string) {
   };
   try {
     // Create the account in the database
-    await chatService.createAccount(account);
+    await customerService.createAccount(account);
 
     // Send confirmation email
     await sendWelcomeEmail(email, name);
@@ -28,5 +28,5 @@ export async function deleteAccount(formData: FormData) {
   if (!accountId) {
     return;
   }
-  await chatService.deleteAccount(accountId);
+  await customerService.deleteAccount(accountId);
 }

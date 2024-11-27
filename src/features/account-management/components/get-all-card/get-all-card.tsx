@@ -17,16 +17,17 @@ const statusColors: Record<string, string> = {
 };
 
 type Props = {
+  id: string;
   name: string;
   email: string;
   status: "pending" | "verified" | "rejected";
 };
 
-export function GetAllCard({ name, email, status }: Props) {
+export function GetAllCard({ id, name, email, status }: Props) {
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle className="text-lg font-bold">Name:{name}</CardTitle>
+        <CardTitle className="text-lg font-bold">Name: {name}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-sm text-gray-700">Email: {email}</p>
@@ -36,7 +37,7 @@ export function GetAllCard({ name, email, status }: Props) {
           <span
             className={`h-3 w-3 rounded-full ${statusColors[status]} mr-2`}
           ></span>
-          <p className="text-sm font-medium capitalize">Status: {status}</p>
+          <p className="text-sm font-medium capitalize bg-">Status: {status}</p>
         </div>
       </CardFooter>
     </Card>
