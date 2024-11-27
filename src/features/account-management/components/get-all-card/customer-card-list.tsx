@@ -1,10 +1,12 @@
-import React from "react";
 import { customerService } from "../../instance";
-import { GetAllCard } from "./get-all-card";
 import Header from "../dashboard/header";
+import { GetAllCard } from "./customer-card";
 
 export async function CustomerCardList() {
   const customers = await customerService.getAllAccounts();
+  if (!customers) {
+    return <div>No customers found</div>;
+  }
 
   return (
     <>

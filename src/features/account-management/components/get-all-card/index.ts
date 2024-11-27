@@ -1,2 +1,2 @@
-export * from './customer-card-list';
-export * from './get-all-card';
+export * from "./customer-card";
+export * from "./customer-card-list";
