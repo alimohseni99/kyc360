@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,7 +11,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
 import { DeleteIcon, EditIcon, EyeIcon } from "lucide-react";
 
 // Färger för statusindikatorn
@@ -23,13 +21,12 @@ const statusColors: Record<string, string> = {
 };
 
 type Props = {
-  id: string;
   name: string;
   email: string;
   status: "pending" | "verified" | "rejected";
 };
 
-export function GetAllCard({ id, name, email, status }: Props) {
+export function GetAllCard({ name, email, status }: Props) {
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -38,24 +35,26 @@ export function GetAllCard({ id, name, email, status }: Props) {
             <span>{name}</span>
             <div className="flex-shrink-0">
               <Popover>
-                <PopoverTrigger className="">...</PopoverTrigger>
-                <PopoverContent>
-                  <div className="flex flex-col gap-3">
+                <PopoverTrigger className="p-1 text-xl text-gray-500 hover:text-gray-700">
+                  ...
+                </PopoverTrigger>
+                <PopoverContent className="w-40 p-3 shadow-lg rounded-lg bg-white">
+                  <div className="flex flex-col gap-2">
                     <Button
                       variant="ghost"
-                      className="flex items-center max-w-sm"
+                      className="flex items-center justify-start gap-2 text-sm"
                     >
                       <EyeIcon className="mr-2" /> View
                     </Button>
                     <Button
                       variant="ghost"
-                      className="flex items-center w-full"
+                      className="flex items-center justify-start gap-2 text-sm"
                     >
                       <EditIcon className="mr-2" /> Edit
                     </Button>
                     <Button
                       variant="ghost"
-                      className="flex items-center w-full"
+                      className="flex items-center justify-start gap-2 text-sm"
                     >
                       <DeleteIcon className="mr-2" /> Delete
                     </Button>
