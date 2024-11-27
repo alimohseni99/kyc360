@@ -6,7 +6,7 @@ export async function CustomerCardList() {
   const customers = await customerService.getAllAccounts();
 
   return (
-    <div>
+    <div className="flex gap-3">
       {customers.map((customer) => {
         return (
           <GetAllCard
