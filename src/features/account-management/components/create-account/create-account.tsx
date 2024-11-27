@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { createAccount } from "../action";
+import { createAccount } from "../../action";
 
 export function CreateAccount() {
   const { toast } = useToast();
@@ -40,8 +40,6 @@ export function CreateAccount() {
         ),
       });
     } catch (error) {
-      console.error("Error creating account:", error);
-      console.log(error);
       toast({
         title: "Account Creation Failed",
         description:

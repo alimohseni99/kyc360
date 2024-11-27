@@ -83,7 +83,7 @@ const data = {
       items: [
         {
           title: "View All Accounts",
-          url: "#",
+          url: "/dashboard/view-all-accounts",
         },
         {
           title: "Create New Account",
