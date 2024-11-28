@@ -1,10 +1,10 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { customerService } from "../../instance";
+import { GetAllCard } from "../customer-card";
 import Header from "../dashboard/header";
-import { GetAllCard } from "./customer-card";
 
-export async function CustomerCardList() {
-  const customers = await customerService.getAllAccounts();
+export async function WaitingForApproval() {
+  const customers = await customerService.getAccountByStatus();
   if (!customers) {
     return <div>No customers found</div>;
   }
@@ -18,11 +18,11 @@ export async function CustomerCardList() {
           {customers.map((customer) => {
             return (
               <GetAllCard
-                key={customer.status_id}
-                id={customer.status_id}
-                name={customer.name}
-                email={customer.email}
-                status={customer.status as "pending" | "verified" | "rejected"}
+                key={customer.accountId}
+                id={customer.accountId}
+                name={customer.accountName}
+                email={customer.accountEmail}
+                status={customer.accountStatus as "pending" | "verified" | "rejected"}
               />
             );
           })}

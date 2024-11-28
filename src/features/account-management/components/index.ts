@@ -5,3 +5,4 @@ export * from "./dashboard";
 export * from "./pending-account";
 export * from "./rejected-account";
 export * from "./verified-account";
+export * from "./waiting-for-approval";

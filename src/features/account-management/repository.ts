@@ -37,5 +37,21 @@ export function createRepository(db: Db) {
 
       return await db.insert(accountTable).values(account).execute();
     },
+    async getAccountsWithPendingStatus() {
+      return await db
+        .select({
+          accountId: accountTable.id,
+          accountName: accountTable.contact_name,
+          accountEmail: accountTable.contact_email,
+          accountStatus: accountStatusTable.status,
+        })
+        .from(accountTable)
+        .innerJoin(
+          accountStatusTable,
+          eq(accountTable.status_id, accountStatusTable.status_id)
+        )
+        .where(eq(accountStatusTable.status, "pending"))
+        .execute();
+    },
   };
 }

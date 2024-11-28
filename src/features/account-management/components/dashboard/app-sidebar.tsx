@@ -61,6 +61,10 @@ const data = {
           url: "/dashboard/create-account",
         },
         {
+          title: "Waiting for Approval",
+          url: "/dashboard/waiting-for-approval",
+        },
+        {
           title: "Pending",
           url: "/dashboard/in-progress",
         },

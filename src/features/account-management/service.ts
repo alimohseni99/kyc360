@@ -17,5 +17,8 @@ export function createService(db: Db) {
     async submitAccountDetails(account: Account) {
       return await repository.submitAccountDetails(account);
     },
+    async getAccountByStatus() {
+      return await repository.getAccountsWithPendingStatus();
+    },
   };
 }
