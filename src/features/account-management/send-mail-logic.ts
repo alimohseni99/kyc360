@@ -12,8 +12,6 @@ if (!process.env.SENDGRID_SENDER_EMAIL) {
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export function sendWelcomeEmail(to: string, name: string, id: string) {
-  console.log(id);
-
   const msg = {
     to,
     from: process.env.SENDGRID_SENDER_EMAIL as string,

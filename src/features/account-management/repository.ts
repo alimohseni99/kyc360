@@ -1,25 +1,41 @@
 import { Db } from "@/db";
 import { eq } from "drizzle-orm";
-import { accountStatusTable } from "./schema/schema";
-import { Accounts } from "./type";
+import { accountStatusTable, accountTable } from "./schema/schema";
+import { Account, AccountStatus } from "./type";
 
 export function createRepository(db: Db) {
   return {
     async getAllAccounts() {
       return await db.select().from(accountStatusTable).execute();
     },
-    async createAccount(account: Accounts) {
+    async createAccount(account: AccountStatus) {
       return await db
         .insert(accountStatusTable)
         .values(account)
-        .returning({ customerId: accountStatusTable.id })
+        .returning({ customerId: accountStatusTable.status_id })
         .execute();
     },
     async deleteAccount(id: string) {
       return await db
         .delete(accountStatusTable)
-        .where(eq(accountStatusTable.id, id))
+        .where(eq(accountStatusTable.status_id, id))
         .execute();
+    },
+    async submitAccountDetails(account: Account) {
+      const statusExists = await db
+        .select({ id: accountStatusTable.status_id })
+        .from(accountStatusTable)
+        .where(eq(accountStatusTable.status_id, account.status_id))
+        .limit(1)
+        .execute();
+
+      if (statusExists.length === 0) {
+        throw new Error(
+          `Status ID ${account.status_id} does not exist in accountStatusTable.`
+        );
+      }
+
+      return await db.insert(accountTable).values(account).execute();
     },
   };
 }

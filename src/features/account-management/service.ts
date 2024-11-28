@@ -1,6 +1,6 @@
 import { Db } from "@/db";
 import { createRepository } from "./repository";
-import { Accounts } from "./type";
+import { Account, AccountStatus } from "./type";
 
 export function createService(db: Db) {
   const repository = createRepository(db);
@@ -8,11 +8,14 @@ export function createService(db: Db) {
     async getAllAccounts() {
       return await repository.getAllAccounts();
     },
-    async createAccount(account: Accounts) {
-      return await repository.createAccount(account);
+    async createAccount(accountStatus: AccountStatus) {
+      return await repository.createAccount(accountStatus);
     },
     async deleteAccount(id: string) {
       return await repository.deleteAccount(id);
+    },
+    async submitAccountDetails(account: Account) {
+      return await repository.submitAccountDetails(account);
     },
   };
 }

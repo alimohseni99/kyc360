@@ -1,19 +1,28 @@
 import { sql } from "drizzle-orm";
-import { pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
 
 export const accountTable = pgTable("account", {
   id: uuid()
     .primaryKey()
     .default(sql`gen_random_uuid()`),
+
+  company_name: varchar({ length: 255 }).notNull(),
+  org_number: varchar({ length: 50 }).notNull(),
+  business_description: text().notNull(),
+  annual_revenue: integer().notNull(),
+  contact_name: varchar({ length: 255 }).notNull(),
+  contact_email: varchar({ length: 255 }).notNull(),
+  image_url: varchar({ length: 500 }).notNull(),
+
   status_id: uuid()
     .notNull()
-    .references(() => accountStatusTable.id),
-  media_ids: varchar({ length: 500 }).notNull(),
+    .references(() => accountStatusTable.status_id),
+
   verified_by: varchar({ length: 255 }).notNull().default("admin"),
 });
 
 export const accountStatusTable = pgTable("account_status", {
-  id: uuid()
+  status_id: uuid()
     .primaryKey()
     .default(sql`gen_random_uuid()`),
   email: varchar({ length: 255 }).notNull().unique(),

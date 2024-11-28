@@ -1,7 +1,6 @@
 "use client";
 
 import { UploadButton } from "@/app/utils/uploadthing";
-import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,26 +10,72 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Textarea } from "@/components/ui/textarea";
+import { submitAccountDetails } from "../../action";
 
 export function CustomerTempPage() {
+  const pathName = usePathname();
   const { toast } = useToast();
+  const [imageUrl, setImageUrl] = useState<string>("");
+
   const representativeSchema = z.object({
-    companyName: z.string().nonempty({ message: "Name is required" }),
-    orgNumber: z.string().nonempty({ message: "Name is required" }),
-    businessDescription: z.string().nonempty({ message: "Name is required" }),
-    annualRevenue: z.string().nonempty({ message: "Name is required" }),
-    contactName: z.string().nonempty({ message: "Name is required" }),
-    contactEmail: z.string().nonempty({ message: "Name is required" }),
+    companyName: z.string().nonempty({ message: "This is required" }),
+    orgNumber: z.string().nonempty({ message: "This is required" }),
+    businessDescription: z.string().nonempty({ message: "This is required" }),
+    annualRevenue: z
+      .string()
+      .nonempty({ message: "This is required" })
+      .transform((val) => parseFloat(val))
+      .refine((val) => val >= 0, { message: "This is required" }),
+    contactName: z.string().nonempty({ message: "This is required" }),
+    contactEmail: z.string().nonempty({ message: "This is required" }),
   });
+
   const form = useForm<z.infer<typeof representativeSchema>>({
     resolver: zodResolver(representativeSchema),
   });
 
-  const onClientUploadComplete = (res: any) => {
+  const onSubmit = async (data: z.infer<typeof representativeSchema>) => {
+    const userId = pathName.split("/").pop() || "";
+
+    console.log(userId);
+
+    submitAccountDetails(
+      data.companyName,
+      data.orgNumber,
+      data.businessDescription,
+      data.annualRevenue,
+      data.contactName,
+      data.contactEmail,
+      imageUrl,
+      userId
+    );
+
+    try {
+      toast({
+        title: "Thank you for your application",
+        description: (
+          <>Your application has been successfully submitted. We will review</>
+        ),
+      });
+    } catch (error) {
+      toast({
+        title: "It failed :(",
+        description: `There was an error creating the account. Please try again later. ${error}`,
+      });
+    }
+
+    // form.reset();
+  };
+
+  const onClientUploadComplete = (res) => {
+    setImageUrl(res[0].url);
     toast({
       title: "Document Uploaded",
       description: "Your document uploaded successfully",
@@ -41,25 +86,6 @@ export function CustomerTempPage() {
       title: "Document Upload Failed",
       description: `There was an error uploading the document. Please try again later. ${error}`,
     });
-  };
-
-  const onSubmit = async (data: z.infer<typeof representativeSchema>) => {
-    try {
-      //kör POST här till DB
-      toast({
-        title: "Thank you for your application",
-        description: (
-          <>Your application has been successfully submitted. We will review</>
-        ),
-      });
-    } catch (error) {
-      toast({
-        title: "It faild :(",
-        description: `There was an error creating the account. Please try again later. ${error}`,
-      });
-    }
-
-    form.reset();
   };
 
   return (
@@ -178,7 +204,7 @@ export function CustomerTempPage() {
               endpoint="imageUploader"
               onClientUploadComplete={onClientUploadComplete}
               onUploadError={onUploadError}
-              className="mt-5"
+              className="mt-5 w-full"
             ></UploadButton>
 
             <Button className="mt-5 w-full">Submit Application</Button>
