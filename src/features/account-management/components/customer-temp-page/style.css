@@ -16,13 +16,13 @@
 
 /* applied to button when hover - without animation */
 .custom-class > *[data-ut-element="button"]:hover {
-  background-color: #333333; /* Hover-färgen */
-  color: #ffffff; /* Tydligare textfärg */
+  background-color: #333333;
+  color: #ffffff;
 }
 
 /* applied to button when uploading (same color as hover) */
 .custom-class > *[data-ut-element="button"][data-state="uploading"] {
-  background-color: #333333; /* Same color as hover */
+  background-color: #333333;
   color: #ffffff;
   cursor: not-allowed;
 }

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Building,
-  FileCheck,
-  FileText,
-  ShieldCheck,
-  UserPlus,
-} from "lucide-react";
+import { Building, FileCheck, ShieldCheck, UserPlus } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -56,14 +50,15 @@ const data = {
         },
       ],
     },
+
     {
-      title: "Pending Verifications",
+      title: "Accounts",
       url: "#",
       icon: UserPlus,
       items: [
         {
           title: "New Applications",
-          url: "#",
+          url: "/dashboard/create-account",
         },
         {
           title: "In Progress",
@@ -73,20 +68,9 @@ const data = {
           title: "Rejected Applications",
           url: "#",
         },
-      ],
-    },
-    {
-      title: "Accounts",
-      url: "#",
-      icon: FileText,
-      items: [
         {
-          title: "View All Accounts",
+          title: "Verified Applications",
           url: "/dashboard/view-all-accounts",
-        },
-        {
-          title: "Create New Account",
-          url: "/dashboard/create-account",
         },
       ],
     },
@@ -101,11 +85,6 @@ const data = {
       name: "Fraud Detection",
       url: "#",
       icon: FileCheck,
-    },
-    {
-      name: "Account Management",
-      url: "#",
-      icon: Building,
     },
   ],
 };
