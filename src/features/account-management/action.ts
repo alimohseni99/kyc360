@@ -55,3 +55,12 @@ export async function submitAccountDetails(
   await customerService.submitAccountDetails(account);
   revalidatePath("/view-all-accounts");
 }
+
+export async function approveApplication(accountId: string) {
+  await customerService.approveApplication(accountId);
+  revalidatePath("/view-all-accounts");
+}
+export async function rejectApplication(accountId: string) {
+  await customerService.rejectApplication(accountId);
+  revalidatePath("/view-all-accounts");
+}

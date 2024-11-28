@@ -39,18 +39,27 @@ export function createRepository(db: Db) {
     },
     async getAccountsWithPendingStatus() {
       return await db
-        .select({
-          accountId: accountTable.id,
-          accountName: accountTable.contact_name,
-          accountEmail: accountTable.contact_email,
-          accountStatus: accountStatusTable.status,
-        })
+        .select()
         .from(accountTable)
         .innerJoin(
           accountStatusTable,
           eq(accountTable.status_id, accountStatusTable.status_id)
         )
         .where(eq(accountStatusTable.status, "pending"))
+        .execute();
+    },
+    async approveApplication(accountId: string) {
+      return await db
+        .update(accountStatusTable)
+        .set({ status: "verified" })
+        .where(eq(accountStatusTable.status_id, accountId))
+        .execute();
+    },
+    async rejectApplication(accountId: string) {
+      return await db
+        .update(accountStatusTable)
+        .set({ status: "rejected" })
+        .where(eq(accountStatusTable.status_id, accountId))
         .execute();
     },
   };

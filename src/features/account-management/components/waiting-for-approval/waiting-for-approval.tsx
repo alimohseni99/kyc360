@@ -1,7 +1,6 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { customerService } from "../../instance";
-import { GetAllCard } from "../customer-card";
 import Header from "../dashboard/header";
+import { ApprovalCard } from "./approval-card";
 
 export async function WaitingForApproval() {
   const customers = await customerService.getAccountByStatus();
@@ -12,24 +11,22 @@ export async function WaitingForApproval() {
   return (
     <>
       <Header place="Waiting For Approval" />
-
-      <ScrollArea className="h-[80vh] ">
-        <div className="flex flex-row flex-wrap gap-2">
-          {customers.map((customer) => {
-            return (
-              <GetAllCard
-                key={customer.accountId}
-                id={customer.accountId}
-                name={customer.accountName}
-                email={customer.accountEmail}
-                status={
-                  customer.accountStatus as "pending" | "verified" | "rejected"
-                }
-              />
-            );
-          })}
-        </div>
-      </ScrollArea>
+      {customers.map((customer) => (
+        <ApprovalCard
+          key={customer.account.id}
+          accountId={customer.account.status_id}
+          company_name={customer.account.company_name}
+          org_number={customer.account.org_number}
+          business_description={customer.account.business_description}
+          annual_revenue={customer.account.annual_revenue}
+          company_address={customer.account.company_address}
+          company_type={customer.account.company_type}
+          contact_name={customer.account.contact_name}
+          contact_email={customer.account.contact_email}
+          owner_name={customer.account.owner_name}
+          img_url={customer.account.image_url}
+        />
+      ))}
     </>
   );
 }

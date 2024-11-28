@@ -20,5 +20,11 @@ export function createService(db: Db) {
     async getAccountByStatus() {
       return await repository.getAccountsWithPendingStatus();
     },
+    async approveApplication(accountId: string) {
+      return await repository.approveApplication(accountId);
+    },
+    async rejectApplication(accountId: string) {
+      return await repository.rejectApplication(accountId);
+    },
   };
 }
