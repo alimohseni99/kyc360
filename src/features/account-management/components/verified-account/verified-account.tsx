@@ -18,7 +18,7 @@ export async function VerifiedAccount() {
 
   return (
     <>
-      <Header place="View All Accounts " />
+      <Header place="Verified Applications" />
 
       <ScrollArea className="h-[80vh] ">
         <div className="flex flex-row flex-wrap gap-2">

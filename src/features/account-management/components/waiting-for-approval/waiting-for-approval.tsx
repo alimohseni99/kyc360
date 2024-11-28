@@ -11,7 +11,7 @@ export async function WaitingForApproval() {
 
   return (
     <>
-      <Header place="View All Accounts " />
+      <Header place="Waiting For Approval" />
 
       <ScrollArea className="h-[80vh] ">
         <div className="flex flex-row flex-wrap gap-2">
@@ -22,7 +22,9 @@ export async function WaitingForApproval() {
                 id={customer.accountId}
                 name={customer.accountName}
                 email={customer.accountEmail}
-                status={customer.accountStatus as "pending" | "verified" | "rejected"}
+                status={
+                  customer.accountStatus as "pending" | "verified" | "rejected"
+                }
               />
             );
           })}

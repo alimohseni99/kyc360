@@ -52,7 +52,7 @@ export function CreateAccount() {
 
   return (
     <>
-      <Header place="Create Account" />
+      <Header place="New Applications" />
       <div className="flex justify-center items-center min-h-screen">
         <Form {...form}>
           <form

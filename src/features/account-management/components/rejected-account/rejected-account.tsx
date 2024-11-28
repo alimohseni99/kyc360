@@ -14,7 +14,7 @@ export async function RejectedAccount() {
 
   return (
     <>
-      <Header place="View All Accounts " />
+      <Header place="Rejected Applications" />
 
       <ScrollArea className="h-[80vh] ">
         <div className="flex flex-row flex-wrap gap-2">
