@@ -1,11 +1,24 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { UploadButton } from "@/app/utils/uploadthing";
 
 export function CustomerTempPage() {
-  const pathname = usePathname();
-
-  const id = pathname?.split("/").pop();
-
-  return <p>Customer ID: {id}</p>;
+  return (
+    <>
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <UploadButton
+          endpoint="imageUploader"
+          onClientUploadComplete={(res) => {
+            // Do something with the response
+            console.log("Files: ", res);
+            alert("Upload Completed");
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            alert(`ERROR! ${error.message}`);
+          }}
+        />
+      </main>
+    </>
+  );
 }
