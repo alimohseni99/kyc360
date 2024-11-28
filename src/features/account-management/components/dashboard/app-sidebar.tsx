@@ -66,11 +66,11 @@ const data = {
         },
         {
           title: "Rejected Applications",
-          url: "#",
+          url: "/dashboard/rejected",
         },
         {
           title: "Verified Applications",
-          url: "/dashboard/view-all-accounts",
+          url: "/dashboard/verified",
         },
       ],
     },
