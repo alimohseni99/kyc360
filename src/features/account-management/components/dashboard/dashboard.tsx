@@ -1,17 +1,4 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import Header from "./header";
 
 export function Dashboard() {
@@ -42,9 +29,7 @@ export function Dashboard() {
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4">
             <h2 className="text-lg font-bold">Recent Account Activities</h2>
             <ul className="list-disc pl-6">
-              <li>User: Ali Mohseni - Status: Verified</li>
-              <li>User: Daniel Hormos - Status: Pending</li>
-              <li>User: John Baba - Status: Unverified</li>
+              <p>In progress</p>
             </ul>
           </div>
         </div>

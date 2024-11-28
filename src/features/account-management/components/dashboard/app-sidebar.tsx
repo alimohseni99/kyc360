@@ -62,7 +62,7 @@ const data = {
         },
         {
           title: "In Progress",
-          url: "#",
+          url: "/dashboard/in-progress",
         },
         {
           title: "Rejected Applications",
