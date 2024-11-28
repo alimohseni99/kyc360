@@ -14,6 +14,10 @@ export const accountTable = pgTable("account", {
   contact_email: varchar({ length: 255 }).notNull(),
   image_url: varchar({ length: 500 }).notNull(),
 
+  company_address: varchar({ length: 500 }).notNull(),
+  company_type: varchar({ length: 100 }).notNull(),
+  owner_name: varchar({ length: 255 }).notNull(),
+
   status_id: uuid()
     .notNull()
     .references(() => accountStatusTable.status_id),

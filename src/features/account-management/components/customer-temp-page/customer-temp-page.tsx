@@ -10,6 +10,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,11 +41,17 @@ export function CustomerTempPage() {
       .string()
       .nonempty({ message: "This is required" })
       .transform((val) => parseFloat(val))
-      .refine((val) => val >= 0, { message: "This is required" }),
+      .refine((val) => val >= 0, {
+        message: "Revenue must be greater than or equal to 0",
+      }),
     contactName: z.string().nonempty({ message: "This is required" }),
     contactEmail: z.string().nonempty({ message: "This is required" }),
+    companyAddress: z.string().nonempty({ message: "This is required" }),
+    companyType: z.object({
+      value: z.string().nonempty({ message: "This is required" }),
+    }),
+    ownerName: z.string().nonempty({ message: "This is required" }),
   });
-
   const form = useForm<z.infer<typeof representativeSchema>>({
     resolver: zodResolver(representativeSchema),
   });
@@ -55,7 +69,10 @@ export function CustomerTempPage() {
       data.contactName,
       data.contactEmail,
       imageUrl,
-      userId
+      userId,
+      data.companyAddress,
+      data.companyType.value,
+      data.ownerName
     );
 
     try {
@@ -88,128 +105,183 @@ export function CustomerTempPage() {
   };
 
   return (
-    <>
-      <div className="flex justify-center items-center min-h-screen">
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="w-[400px] border border-gray-200 p-5 rounded-md shadow-md"
-          >
-            <h2 className="text-xl font-semibold text-center mb-4">
-              Open Business Account
-            </h2>
+    <div className="flex justify-center items-center min-h-screen">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-[400px] border border-gray-200 p-5 rounded-md shadow-md"
+        >
+          <h2 className="text-xl font-semibold text-center mb-4">
+            Open Business Account
+          </h2>
 
-            <FormItem>
-              <FormLabel className="text-sm font-medium">
-                Company Name:
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...form.register("companyName")}
-                  placeholder="Enter company name"
-                  className="mt-1 block w-full rounded-md border shadow-sm"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.companyName?.message}
-              </FormMessage>
-            </FormItem>
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Company Name:*
+            </FormLabel>
+            <FormControl>
+              <Input
+                {...form.register("companyName")}
+                placeholder="Enter company name"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.companyName?.message}
+            </FormMessage>
+          </FormItem>
 
-            <FormItem>
-              <FormLabel className="text-sm font-medium">
-                Org. Number:
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...form.register("orgNumber")}
-                  placeholder="Enter organization number"
-                  className="mt-1 block w-full rounded-md border shadow-sm"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.orgNumber?.message}
-              </FormMessage>
-            </FormItem>
+          <FormItem>
+            <FormLabel className="text-sm font-medium">Org. Number:*</FormLabel>
+            <FormControl>
+              <Input
+                {...form.register("orgNumber")}
+                placeholder="Enter organization number"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.orgNumber?.message}
+            </FormMessage>
+          </FormItem>
 
-            <FormItem>
-              <FormLabel className="text-sm font-medium">
-                Business Description:
-              </FormLabel>
-              <FormControl>
-                <Textarea
-                  {...form.register("businessDescription")}
-                  placeholder="Briefly describe your business"
-                  className="mt-1 block w-full rounded-md border shadow-sm"
-                  rows={3}
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.businessDescription?.message}
-              </FormMessage>
-            </FormItem>
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Business Description:*
+            </FormLabel>
+            <FormControl>
+              <Textarea
+                {...form.register("businessDescription")}
+                placeholder="Briefly describe your business"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+                rows={3}
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.businessDescription?.message}
+            </FormMessage>
+          </FormItem>
 
-            <FormItem>
-              <FormLabel className="text-sm font-medium">
-                Annual Revenue (SEK):
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...form.register("annualRevenue")}
-                  placeholder="Enter expected annual revenue"
-                  type="number"
-                  className="mt-1 block w-full rounded-md border shadow-sm"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.annualRevenue?.message}
-              </FormMessage>
-            </FormItem>
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Annual Revenue (SEK):*
+            </FormLabel>
+            <FormControl>
+              <Input
+                {...form.register("annualRevenue")}
+                placeholder="Enter expected annual revenue"
+                type="number"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.annualRevenue?.message}
+            </FormMessage>
+          </FormItem>
 
-            <FormItem>
-              <FormLabel className="text-sm font-medium">
-                Contact Name:
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...form.register("contactName")}
-                  placeholder="Enter contact person's name"
-                  className="mt-1 block w-full rounded-md border shadow-sm"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.contactName?.message}
-              </FormMessage>
-            </FormItem>
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Contact Name:*
+            </FormLabel>
+            <FormControl>
+              <Input
+                {...form.register("contactName")}
+                placeholder="Enter contact person's name"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.contactName?.message}
+            </FormMessage>
+          </FormItem>
 
-            <FormItem>
-              <FormLabel className="text-sm font-medium">
-                Contact Email:
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...form.register("contactEmail")}
-                  placeholder="Enter contact email"
-                  type="email"
-                  className="mt-1 block w-full rounded-md border shadow-sm"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.contactEmail?.message}
-              </FormMessage>
-            </FormItem>
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Contact Email:*
+            </FormLabel>
+            <FormControl>
+              <Input
+                {...form.register("contactEmail")}
+                placeholder="Enter contact email"
+                type="email"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.contactEmail?.message}
+            </FormMessage>
+          </FormItem>
 
-            {/* Uppladdning av dokument */}
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={onClientUploadComplete}
-              onUploadError={onUploadError}
-              className="custom-class mt-5 w-full"
-            />
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Company Address:*
+            </FormLabel>
+            <FormControl>
+              <Input
+                {...form.register("companyAddress")}
+                placeholder="Enter company address"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.companyAddress?.message}
+            </FormMessage>
+          </FormItem>
 
-            <Button className="mt-5 w-full">Submit Application</Button>
-          </form>
-        </Form>
-      </div>
-    </>
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Company Type:*
+            </FormLabel>
+            <FormControl>
+              <Select
+                value={form.watch("companyType.value")}
+                onValueChange={(value) =>
+                  form.setValue("companyType.value", value)
+                }
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select company type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="AB">AB</SelectItem>
+                    <SelectItem value="HB">HB</SelectItem>
+                    <SelectItem value="enskild">Enskild</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.companyType?.message}
+            </FormMessage>
+          </FormItem>
+
+          <FormItem>
+            <FormLabel className="text-sm font-medium">
+              Beneficial owner&apos;s Name:*
+            </FormLabel>
+            <FormControl>
+              <Input
+                {...form.register("ownerName")}
+                placeholder="Enter beneficial owner's name"
+                className="mt-1 block w-full rounded-md border shadow-sm"
+              />
+            </FormControl>
+            <FormMessage>
+              {form.formState.errors.ownerName?.message}
+            </FormMessage>
+          </FormItem>
+
+          <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={onClientUploadComplete}
+            onUploadError={onUploadError}
+            className="custom-class mt-5 w-full"
+          />
+
+          <Button className="mt-5 w-full">Submit Application</Button>
+        </form>
+      </Form>
+    </div>
   );
 }

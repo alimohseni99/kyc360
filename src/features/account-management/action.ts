@@ -33,7 +33,10 @@ export async function submitAccountDetails(
   contact_name: string,
   contact_email: string,
   image_url: string,
-  status_id: string
+  status_id: string,
+  company_address: string,
+  company_type: string,
+  owner_name: string
 ) {
   const account: Account = {
     company_name,
@@ -44,6 +47,9 @@ export async function submitAccountDetails(
     contact_email,
     image_url,
     status_id,
+    company_address,
+    company_type,
+    owner_name,
   };
   console.log(status_id);
   await customerService.submitAccountDetails(account);

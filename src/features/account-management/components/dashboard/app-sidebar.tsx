@@ -18,7 +18,7 @@ import { TeamSwitcher } from "@/features/account-management/components/dashboard
 const data = {
   user: {
     name: "Admin",
-    email: "admin@gamil.com",
+    email: "admin@gmail.com",
     avatar: "",
   },
   teams: [
@@ -61,7 +61,7 @@ const data = {
           url: "/dashboard/create-account",
         },
         {
-          title: "In Progress",
+          title: "Pending",
           url: "/dashboard/in-progress",
         },
         {

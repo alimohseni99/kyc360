@@ -12,5 +12,8 @@ export type Account = {
   contact_name: string;
   contact_email: string;
   image_url: string;
+  company_address: string;
+  company_type: string;
+  owner_name: string;
   status_id: string;
 };
