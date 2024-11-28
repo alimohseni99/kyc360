@@ -1,0 +1,33 @@
+/* applied to container */
+.custom-class {
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* applied to button */
+.custom-class > *[data-ut-element="button"] {
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* applied to button when hover - without animation */
+.custom-class > *[data-ut-element="button"]:hover {
+  background-color: #333333; /* Hover-färgen */
+  color: #ffffff; /* Tydligare textfärg */
+}
+
+/* applied to button when uploading (same color as hover) */
+.custom-class > *[data-ut-element="button"][data-state="uploading"] {
+  background-color: #333333; /* Same color as hover */
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+/* applied to the upload indicator when uploading */
+.custom-class > *[data-ut-element="button"][data-state="uploading"]::after {
+  background-color: #636363;
+}

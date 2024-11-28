@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { submitAccountDetails } from "../../action";
+import "./style.css";
 
 export function CustomerTempPage() {
   const pathName = usePathname();
@@ -70,8 +71,6 @@ export function CustomerTempPage() {
         description: `There was an error creating the account. Please try again later. ${error}`,
       });
     }
-
-    // form.reset();
   };
 
   const onClientUploadComplete = (res) => {
@@ -204,8 +203,8 @@ export function CustomerTempPage() {
               endpoint="imageUploader"
               onClientUploadComplete={onClientUploadComplete}
               onUploadError={onUploadError}
-              className="mt-5 w-full"
-            ></UploadButton>
+              className="custom-class mt-5 w-full"
+            />
 
             <Button className="mt-5 w-full">Submit Application</Button>
           </form>
