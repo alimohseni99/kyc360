@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "utfs.io",
       },
+      {
+        hostname: "images.unsplash.com",
+      },
     ],
   },
 };

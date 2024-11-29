@@ -2,7 +2,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import Image from "next/image";
 import Header from "./header";
 
-export function Dashboard() {
+export async function Dashboard() {
   return (
     <SidebarProvider>
       <SidebarInset>
@@ -26,14 +26,13 @@ export function Dashboard() {
               </h3>
             </div>
           </div>
-
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4">
-            <h2 className="text-lg font-bold">Recent Account Activities</h2>
+          <div>
             <Image
-              src=""
-              width={750}
-              height={750}
+              src="https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              width={1800}
+              height={800}
               alt="Some Random Bank"
+              className="rounded-l"
             />
           </div>
         </div>

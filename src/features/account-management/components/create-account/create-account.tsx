@@ -53,7 +53,7 @@ export function CreateAccount() {
   return (
     <>
       <Header place="New Applications" />
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center min-h-screen h-[80vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

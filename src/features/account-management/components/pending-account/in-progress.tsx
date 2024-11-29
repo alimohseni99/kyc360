@@ -16,7 +16,7 @@ export async function InProgress() {
     <>
       <Header place="Pending" />
 
-      <ScrollArea className="h-[80vh] ">
+      <ScrollArea className="h-[80vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4">
         <div className="flex flex-row flex-wrap gap-2">
           {pendingCustomers.map((customer) => {
             return (
