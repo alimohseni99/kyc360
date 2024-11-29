@@ -54,10 +54,11 @@ export function Login() {
               </p>
             </div>
             <FormItem>
+              <FormLabel className="text-sm font-medium">Email:</FormLabel>
               <FormControl>
                 <Input
                   {...form.register("email")}
-                  placeholder="Enter your email"
+                  placeholder="example@domain.com"
                   className="mt-1 block w-full rounded-md border shadow-sm"
                 />
               </FormControl>
@@ -65,6 +66,7 @@ export function Login() {
             </FormItem>
 
             <FormItem className="mt-4">
+              <FormLabel className="text-sm font-medium">Password:</FormLabel>
               <FormControl>
                 <Input
                   {...form.register("password")}
