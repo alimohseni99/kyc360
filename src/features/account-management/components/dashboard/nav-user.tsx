@@ -17,6 +17,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { bankUsersLogout } from "../../action";
 
 export function NavUser({
   user,
@@ -28,6 +29,9 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const logout = () => {
+    bankUsersLogout();
+  };
 
   return (
     <SidebarMenu>
@@ -69,8 +73,10 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut />
-              Log out
+              <SidebarMenuButton onClick={logout}>
+                <LogOut />
+                Log out
+              </SidebarMenuButton>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

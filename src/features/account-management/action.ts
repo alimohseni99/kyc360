@@ -6,6 +6,7 @@ import { sendApprovedEmail } from "./on-approv-mail";
 import { sendWelcomeEmail } from "./on-create-mail";
 import { sendRejectEmail } from "./on-reject-mail";
 import { Account, AccountStatus } from "./type";
+import { redirect } from "next/navigation";
 
 export async function createAccount(email: string, name: string) {
   const account: AccountStatus = {
@@ -75,4 +76,8 @@ export async function rejectApplication(
   await customerService.rejectApplication(accountId);
   sendRejectEmail(email, name);
   revalidatePath("/view-all-accounts");
+}
+
+export async function bankUsersLogout() {
+  redirect("/");
 }
