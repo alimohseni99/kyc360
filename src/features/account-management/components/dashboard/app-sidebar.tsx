@@ -11,7 +11,6 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavMain } from "@/features/account-management/components/dashboard/nav-main";
-import { NavProjects } from "@/features/account-management/components/dashboard/nav-projects";
 import { NavUser } from "@/features/account-management/components/dashboard/nav-user";
 import { TeamSwitcher } from "@/features/account-management/components/dashboard/team-switcher";
 
@@ -19,7 +18,8 @@ const data = {
   user: {
     name: "Admin",
     email: "admin@gmail.com",
-    avatar: "",
+    avatar:
+      "https://plus.unsplash.com/premium_photo-1723028769916-a767a6b0f719?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   teams: [
     {
@@ -79,18 +79,6 @@ const data = {
       ],
     },
   ],
-  projects: [
-    {
-      name: "KYC Dashboard",
-      url: "#",
-      icon: ShieldCheck,
-    },
-    {
-      name: "Fraud Detection",
-      url: "#",
-      icon: FileCheck,
-    },
-  ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -101,7 +89,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

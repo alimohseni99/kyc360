@@ -56,7 +56,6 @@ export function ApprovalCard({
   img_url,
 }: ApprovalCardProps) {
   const onClickApprove = async () => {
-    console.log("hello ");
     await approveApplication(accountId, contact_email, contact_name);
   };
   const onClickReject = async () => {
@@ -169,7 +168,7 @@ export function ApprovalCard({
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription>
                 This action cannot be undone. Once approved, this will confirm
-                the details and amount will be created!
+                the details and an account will be created!
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
