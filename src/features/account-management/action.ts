@@ -2,7 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { customerService } from "./instance";
-import { sendWelcomeEmail } from "./send-mail-logic";
+import { sendApprovedEmail } from "./on-approv-mail";
+import { sendWelcomeEmail } from "./on-create-mail";
+import { sendRejectEmail } from "./on-reject-mail";
 import { Account, AccountStatus } from "./type";
 
 export async function createAccount(email: string, name: string) {
@@ -56,11 +58,21 @@ export async function submitAccountDetails(
   revalidatePath("/view-all-accounts");
 }
 
-export async function approveApplication(accountId: string) {
+export async function approveApplication(
+  accountId: string,
+  email: string,
+  name: string
+) {
   await customerService.approveApplication(accountId);
+  sendApprovedEmail(email, name);
   revalidatePath("/view-all-accounts");
 }
-export async function rejectApplication(accountId: string) {
+export async function rejectApplication(
+  accountId: string,
+  email: string,
+  name: string
+) {
   await customerService.rejectApplication(accountId);
+  sendRejectEmail(email, name);
   revalidatePath("/view-all-accounts");
 }

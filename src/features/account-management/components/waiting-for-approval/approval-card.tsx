@@ -57,10 +57,10 @@ export function ApprovalCard({
 }: ApprovalCardProps) {
   const onClickApprove = async () => {
     console.log("hello ");
-    await approveApplication(accountId);
+    await approveApplication(accountId, contact_email, contact_name);
   };
   const onClickReject = async () => {
-    await rejectApplication(accountId);
+    await rejectApplication(accountId, contact_email, contact_name);
   };
 
   return (

@@ -1,4 +1,5 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import Image from "next/image";
 import Header from "./header";
 
 export function Dashboard() {
@@ -28,9 +29,12 @@ export function Dashboard() {
 
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4">
             <h2 className="text-lg font-bold">Recent Account Activities</h2>
-            <ul className="list-disc pl-6">
-              <p>In progress</p>
-            </ul>
+            <Image
+              src=""
+              width={750}
+              height={750}
+              alt="Some Random Bank"
+            />
           </div>
         </div>
       </SidebarInset>
