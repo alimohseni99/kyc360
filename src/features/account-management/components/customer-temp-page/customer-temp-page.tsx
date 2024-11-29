@@ -122,8 +122,8 @@ export function CustomerTempPage() {
             <FormControl>
               <Input
                 {...form.register("companyName")}
-                placeholder="Enter company name"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                placeholder="e.g., Tech Innovators AB"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
               />
             </FormControl>
             <FormMessage>
@@ -136,8 +136,8 @@ export function CustomerTempPage() {
             <FormControl>
               <Input
                 {...form.register("orgNumber")}
-                placeholder="Enter organization number"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                placeholder="e.g., 556123-4567"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
               />
             </FormControl>
             <FormMessage>
@@ -153,7 +153,7 @@ export function CustomerTempPage() {
               <Textarea
                 {...form.register("businessDescription")}
                 placeholder="Briefly describe your business"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
                 rows={3}
               />
             </FormControl>
@@ -169,9 +169,9 @@ export function CustomerTempPage() {
             <FormControl>
               <Input
                 {...form.register("annualRevenue")}
-                placeholder="Enter expected annual revenue"
+                placeholder="e.g., 1500000"
                 type="number"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
               />
             </FormControl>
             <FormMessage>
@@ -186,8 +186,8 @@ export function CustomerTempPage() {
             <FormControl>
               <Input
                 {...form.register("contactName")}
-                placeholder="Enter contact person's name"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                placeholder="e.g., Sofia Andersson"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
               />
             </FormControl>
             <FormMessage>
@@ -202,9 +202,9 @@ export function CustomerTempPage() {
             <FormControl>
               <Input
                 {...form.register("contactEmail")}
-                placeholder="Enter contact email"
+                placeholder="e.g., sofia.andersson@example.com"
                 type="email"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
               />
             </FormControl>
             <FormMessage>
@@ -219,8 +219,8 @@ export function CustomerTempPage() {
             <FormControl>
               <Input
                 {...form.register("companyAddress")}
-                placeholder="Enter company address"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                placeholder="e.g., Storgatan 12, 123 45 Stockholm"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
               />
             </FormControl>
             <FormMessage>
@@ -239,7 +239,7 @@ export function CustomerTempPage() {
                   form.setValue("companyType.value", value)
                 }
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="!mt-0 !mb-2 w-full">
                   <SelectValue placeholder="Select company type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -263,8 +263,8 @@ export function CustomerTempPage() {
             <FormControl>
               <Input
                 {...form.register("ownerName")}
-                placeholder="Enter beneficial owner's name"
-                className="mt-1 block w-full rounded-md border shadow-sm"
+                placeholder="e.g., Ali Mohseni"
+                className="!mt-0 !mb-2 block w-full rounded-md border shadow-sm"
               />
             </FormControl>
             <FormMessage>
